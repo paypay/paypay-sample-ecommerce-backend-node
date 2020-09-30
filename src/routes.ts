@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 const router = express.Router();
 
 const FRONTEND_PATH = "http://localhost:8080/orderpayment"
+const RETRY_COUNT = 3;
+const SLEEP_TIME_MILLIS = 2000;
 
 router.get("/", (req, res) => {
     res.json({
@@ -23,7 +25,7 @@ router.get("/cakes", (req, res) => {
     }
 
     res.json(cakesList);
-})
+});
 
 router.post("/create-qr", (req, res) => {
 
@@ -41,7 +43,7 @@ router.post("/create-qr", (req, res) => {
     PAYPAY.QRCodeCreate(payload, (ppResonse: any) => {
         res.send(ppResonse.BODY);
     });
-})
+});
 
 const sleep = (ms: any) => {
     return new Promise((resolve) => {
@@ -55,14 +57,14 @@ const getOrderStatus = (merchantId: any) => {
             resolve(response);
         });
     });
-}
+};
 
 router.get("/order-status/:merchantId", async (req, res) => {
 
     let success: boolean = false;
     let orderStatusResponse: any;
 
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < RETRY_COUNT; i++) {
         orderStatusResponse = await getOrderStatus(req.params.merchantId);
 
         if (orderStatusResponse != null && orderStatusResponse.BODY != null) {
@@ -74,11 +76,11 @@ router.get("/order-status/:merchantId", async (req, res) => {
                 success = true;
                 break;
             } else {
-                await sleep(2000);
+                await sleep(SLEEP_TIME_MILLIS);
                 continue;
             }
         } else {
-            await sleep(2000);
+            await sleep(SLEEP_TIME_MILLIS);
             continue;
         }
     }
