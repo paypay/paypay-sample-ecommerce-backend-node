@@ -21,3 +21,5 @@ $ export MERCHANT_ID="REPLACE_WITH_YOUR_MERCHANT_ID"
 $ npm start
 ```
 You should now have the API server running on http://localhost:5000
+## Run on Heroku
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)

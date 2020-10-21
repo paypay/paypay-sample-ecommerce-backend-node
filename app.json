@@ -1,0 +1,30 @@
+{
+    "name": "PayPay Sample eCommerce Node Backend",
+    "description": "This is a NodeJS based backed implementation for the PayPay Sample E-Commerce Web application which utilizes PayPay's SDK.",
+    "repository": "https://github.com/paypay/paypay-sample-ecommerce-backend-php",
+    "logo": "https://avatars3.githubusercontent.com/u/64237612?s=200&v=4",
+    "keywords": [
+        "paypay",
+        "node",
+        "paypay sample applications"
+    ],
+    "env": {
+        "API_KEY": {
+          "description": "PayPay API Key",
+          "value": ""
+        },
+        "API_SECRET": {
+          "description": "PayPay API Secret",
+          "value": ""
+        },
+        "MERCHANT_ID": {
+          "description": "Merchant Payment ID",
+          "value": ""
+        },
+        "REDIRECT_PATH": {
+          "description": "Frontend Path of your store",
+          "value": "https://{YOUR-APP}.herokuapp.com/orderpayment"
+        }
+      }
+
+}
