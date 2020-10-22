@@ -5,6 +5,7 @@
     "env": {
         "API_KEY": "your_api_key",
         "API_SECRET": "your_api_secret",
-        "MERCHANT_ID": "your_merchant_id"
+        "MERCHANT_ID": "your_merchant_id",
+        "APP_PORT": 5000
     }
 }

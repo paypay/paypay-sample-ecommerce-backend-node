@@ -9,6 +9,11 @@
         "paypay sample applications"
     ],
     "env": {
+        
+        "APP_PORT": {
+          "description": "Port app should listen on.",
+          "value": "{PORT}"
+        },
         "API_KEY": {
           "description": "PayPay API Key",
           "value": ""

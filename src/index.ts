@@ -4,7 +4,7 @@ import cors from 'cors';
 import PAYPAY from '@paypayopa/paypayopa-sdk-node';
 import { apiRouter } from './routes';
 
-const port = 5000;
+const port = process.env.APP_PORT?process.env.APP_PORT:5000;
 
 const API_KEY = process.env.API_KEY;
 const API_SECRET = process.env.API_SECRET;
