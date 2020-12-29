@@ -12,9 +12,9 @@ const conf = {
     productionMode: false
 };
 
-const API_KEY = 'a_0MG4LQ1cmW_4IQi'; // process.env.API_KEY;
-const API_SECRET = '7ch0u/Sif33BPDVZy1ogZJIBNKizrJWRhQS/wXrcaWk=' // process.env.API_SECRET;
-const MERCHANT_ID = '318919120301064192'; // process.env.MERCHANT_ID;
+const API_KEY = 'testKey'; // process.env.API_KEY;
+const API_SECRET = '7ch0u/testKey/wXrcaWk=' // process.env.API_SECRET;
+const MERCHANT_ID = 'testId'; // process.env.MERCHANT_ID;
 
 payPayRestSDK.Configure({
     clientId: API_KEY,
