@@ -35,7 +35,7 @@ router.post("/create-qr", (req, res) => {
         merchantPaymentId: paymentId,
         amount: req.body.amount,
         codeType: 'ORDER_QR',
-        // orderItems: req.body.orderItems,
+        orderItems: req.body.orderItems,
         isAuthorization: false,
         orderDescription: 'Test Description',
         redirectUrl: FRONTEND_PATH + "/" + paymentId,
@@ -45,8 +45,6 @@ router.post("/create-qr", (req, res) => {
 
 
     PAYPAY.QRCodeCreate(payload, (ppResonse: any) => {
-        console.log('resp: ', ppResonse);
-
         res.json(ppResonse.BODY);
     });
 });
