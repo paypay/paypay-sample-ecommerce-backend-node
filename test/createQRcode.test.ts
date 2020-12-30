@@ -1,10 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
 import payPayRestSDK from '@paypayopa/paypayopa-sdk-node';
-import { apiRouter } from "../src/routes";
-import { App } from "../src/index";
-import request from "supertest";
-import express from "express";
-const app = express();
 const conf = {
     clientId: '5345435fsdfsr54353454',
     clientSecret: 'dgfgdfgt46435gsdr35tte5',
@@ -12,16 +7,7 @@ const conf = {
     productionMode: false
 };
 
-const API_KEY = 'testKey'; // process.env.API_KEY;
-const API_SECRET = '7ch0u/testKey/wXrcaWk=' // process.env.API_SECRET;
-const MERCHANT_ID = 'testId'; // process.env.MERCHANT_ID;
-
-payPayRestSDK.Configure({
-    clientId: API_KEY,
-    clientSecret: API_SECRET,
-    merchantId: MERCHANT_ID,
-    productionMode: false
-});
+payPayRestSDK.Configure(conf);
 
 test('Unit Test - Create QR code', async () => {
 
@@ -39,18 +25,22 @@ test('Unit Test - Create QR code', async () => {
         userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1'
     };
 
+    const mockHttpsCall = jest.spyOn(payPayRestSDK, 'QRCodeCreate');
+    mockHttpsCall.mockImplementation(jest.fn((_payload: any, _callback: any) => {
+        _callback({
+            STATUS: 200,
+            BODY: {}
+        });
+    }));
 
-    const res = await request(App)
-        .post('/create-qr')
-        .send(payload)
+    await payPayRestSDK.QRCodeCreate(payload, (result: any) => {
+        expect(result.STATUS).toBe(200);
+    });
 
-    console.log('res: ', res);
+    expect(mockHttpsCall).toHaveBeenCalledTimes(1);
+    // expect(mockHttpsCall).toHaveBeenCalledWith(expect.anything(), payload, expect.anything());
 
-
-    expect(res).toBe(201);
-
-    // await payPayRestSDK.QRCodeCreate(payload, (result: any) => {
-    //     expect(result.STATUS).toBe(201);
-    // });
+    mockHttpsCall.mockClear();
 
 });
+
