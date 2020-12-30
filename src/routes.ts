@@ -45,7 +45,7 @@ router.post("/create-qr", (req, res) => {
 
 
     PAYPAY.QRCodeCreate(payload, (ppResonse: any) => {
-        res.json(ppResonse.BODY);
+        res.send(ppResonse.BODY);
     });
 });
 
