@@ -2,7 +2,16 @@ import * as cakes from '../src/cakes.json';
 import request from "supertest";
 import axios from "axios";
 import { App } from "../src/index";
+import { apiRouter } from "../src/routes";
+import payPayRestSDK from '@paypayopa/paypayopa-sdk-node';
+const conf = {
+    clientId: '5345435fsdfsr54353454',
+    clientSecret: 'dgfgdfgt46435gsdr35tte5',
+    merchantId: '2473982',
+    productionMode: false
+};
 
+payPayRestSDK.Configure(conf);
 
 jest.mock('', () => {
     return {
@@ -57,7 +66,12 @@ describe('test list cakes', () => {
 
     it('list cakes', async () => {
         // const photos = await getPhotosByAlbumId(3);
+        const mockHttpsCall = jest.fn();
         const photos = await request(App).get('/cakes');
         expect(photos.body[0].id).toEqual(1);
+
+        mockHttpsCall.mockClear();
     });
+
+
 });
