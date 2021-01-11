@@ -26,8 +26,8 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use("/", apiRouter);
 
-app.listen(port, () => {
+const server = app.listen(port, () => {
     console.log(`server started at http://localhost:${port}`);
 });
 
-export const App = app;
+export const Server = server;

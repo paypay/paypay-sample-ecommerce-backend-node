@@ -1,8 +1,5 @@
-import * as cakes from '../src/cakes.json';
 import request from "supertest";
-import axios from "axios";
-import { App } from "../src/index";
-import { apiRouter } from "../src/routes";
+import { Server } from "../src";
 import payPayRestSDK from '@paypayopa/paypayopa-sdk-node';
 const conf = {
     clientId: '5345435fsdfsr54353454',
@@ -67,9 +64,9 @@ describe('test list cakes', () => {
     it('list cakes', async () => {
         // const photos = await getPhotosByAlbumId(3);
         const mockHttpsCall = jest.fn();
-        const photos = await request(App).get('/cakes');
+        const photos = await request(Server).get('/cakes');
         expect(photos.body[0].id).toEqual(1);
-
+        Server.close();
         mockHttpsCall.mockClear();
     });
 
