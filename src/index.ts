@@ -10,8 +10,6 @@ const API_KEY = process.env.API_KEY;
 const API_SECRET = process.env.API_SECRET;
 const MERCHANT_ID = process.env.MERCHANT_ID;
 
-const FRONTEND_PATH = "http://localhost:8080/orderpayment";
-
 PAYPAY.Configure({
     clientId: API_KEY,
     clientSecret: API_SECRET,
@@ -21,13 +19,8 @@ PAYPAY.Configure({
 
 const app = express();
 app.disable("x-powered-by");
-
 app.use(bodyParser.json());
 app.use(cors());
 app.use("/", apiRouter);
-
-const server = app.listen(port, () => {
-    console.log(`server started at http://localhost:${port}`);
-});
-
+const server = app.listen(port, () => console.log(`server started at http://localhost:${port}`));
 export const Server = server;

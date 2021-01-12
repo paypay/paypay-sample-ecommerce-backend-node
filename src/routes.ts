@@ -16,21 +16,17 @@ router.get("/", (req, res) => {
 });
 
 router.get("/cakes", (req, res) => {
-
     const cakesList: any[] = [];
-
     // tslint:disable-next-line: forin
     for (const key in cakes) {
         cakesList.push(cakes[key]);
     }
-
     res.json(cakesList);
 });
 
 router.post("/create-qr", (req, res) => {
 
     const paymentId = uuidv4();
-
     const payload = {
         merchantPaymentId: paymentId,
         amount: req.body.amount,
