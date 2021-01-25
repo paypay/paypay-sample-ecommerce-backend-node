@@ -17,7 +17,7 @@
   "author": "PayPay OPA SDK",
   "license": "Apache-2.0",
   "dependencies": {
-    "@paypayopa/paypayopa-sdk-node": "^0.9.1",
+    "@paypayopa/paypayopa-sdk-node": "^1.0.0",
     "axios": "^0.21.1",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
