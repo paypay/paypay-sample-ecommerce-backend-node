@@ -18,7 +18,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@paypayopa/paypayopa-sdk-node": "^1.0.3",
-    "axios": "^0.21.1",
+    "axios": "^1.4.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
